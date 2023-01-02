@@ -1,0 +1,19 @@
+#!/bin/bash
+# AHMZA
+# push to uptime kuma for alive status
+
+main() {
+  log `curl $1` >> /home/ahmza/uptk-alive.log
+  exit 0
+}
+
+log() {
+  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*"
+}
+
+if [ -z $1 ]
+  then
+    log "No URL Specified" >> /home/ahmza/uptk-alive.log
+  else
+    main $1
+fi
